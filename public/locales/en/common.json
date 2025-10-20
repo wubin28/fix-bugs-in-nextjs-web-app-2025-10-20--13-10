@@ -1,0 +1,12 @@
+{
+  "promptTooLong": "Prompt exceeds length limit",
+  "charsCount": "{{current}}/{{max}} chars",
+  "warningMessage": "Exceeding text will not be processed",
+  "required": "Required",
+  "placeholder": "e.g. 'recommend me some prompt optimization tools'",
+  "yourPrompt": "Your prompt",
+  "optimizePrompt": "Optimize prompt",
+  "optimizedPrompt": "Optimized prompt",
+  "defaultResult": "Your optimized prompt will be displayed here. Optimize your prompt now!",
+  "copy": "Copy"
+}

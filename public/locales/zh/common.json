@@ -1,0 +1,12 @@
+{
+  "promptTooLong": "提示词超出长度限制",
+  "charsCount": "{{current}}/{{max}}字",
+  "warningMessage": "超出部分将不会被处理",
+  "required": "必填",
+  "placeholder": "例如：'推荐一些提示词优化工具'",
+  "yourPrompt": "你的提示词",
+  "optimizePrompt": "优化提示词",
+  "optimizedPrompt": "优化后的提示词",
+  "defaultResult": "你的优化后的提示词会显示在这里。立即优化你的提示词！",
+  "copy": "复制"
+}

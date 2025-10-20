@@ -7,6 +7,8 @@ import { useAuth } from '@/contexts/AuthContext'
 import { useHistory } from '@/contexts/HistoryContext'
 import { HistoryItem } from '@/contexts/HistoryContext'
 import { Languages, Moon, Sun, Copy } from 'lucide-react'
+import { PromptValidationResult } from '@/types/prompt'
+import PromptTextarea from './PromptTextarea'
 
 export default function MainContent() {
   const { t, toggleLanguage, language } = useLanguage()
@@ -19,6 +21,10 @@ export default function MainContent() {
   const [isOptimizing, setIsOptimizing] = useState(false)
   const [selectedHistory, setSelectedHistory] = useState<HistoryItem | null>(null)
   const [isStreaming, setIsStreaming] = useState(false)
+  const [promptValidation, setPromptValidation] = useState<PromptValidationResult>({
+    isValid: true,
+    charCount: 0
+  })
 
   // 当选择历史记录时，显示对应的内容
   useEffect(() => {
@@ -176,19 +182,19 @@ export default function MainContent() {
             </span>
           </div>
           
-          <input
-            type="text"
-            id="original-prompt"
+          <PromptTextarea
             value={originalPrompt}
-            onChange={(e) => setOriginalPrompt(e.target.value)}
+            onChange={setOriginalPrompt}
+            onValidChange={setPromptValidation}
             placeholder={t('placeholder')}
             disabled={!!selectedHistory}
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            maxLength={1000}
+            hardLimit={1050}
           />
           
           <button
             onClick={handleOptimize}
-            disabled={isOptimizing || !!selectedHistory || !originalPrompt.trim()}
+            disabled={isOptimizing || !!selectedHistory || !originalPrompt.trim() || !promptValidation.isValid}
             className="w-full mt-4 bg-black text-white px-4 py-3 rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isOptimizing ? '优化中...' : t('optimizePrompt')}
